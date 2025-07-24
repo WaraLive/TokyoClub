@@ -1,0 +1,389 @@
+/* Stili Generali e Variabili */
+:root {
+    --ui-color: #ffffff;
+    --background-color: #000000;
+    --text-color: #f0f0f0;
+    --border-color: #444;
+    --neon-pink: #f038ff; /* Mantenuto per piccoli accenti */
+    --neon-cyan: #64d8ff; /* Colore per il glow del logo */
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+/* Stili Globali */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Sfondo a Strisce Diagonali */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(-45deg, #000, #000 35px, #080808 35px, #080808 70px);
+    z-index: -2;
+    opacity: 0.8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.highlight {
+    color: var(--ui-color);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Loghi SVG Fissi negli Angoli */
+.fixed-logo {
+    position: fixed;
+    width: 60px; /* Dimensione del logo d'angolo */
+    height: 60px;
+    z-index: 100;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+}
+.fixed-logo:hover {
+    opacity: 1;
+}
+.fixed-logo img {
+    width: 100%;
+    height: auto;
+}
+.top-left { top: 20px; left: 20px; }
+.top-right { top: 20px; right: 20px; }
+.bottom-left { bottom: 20px; left: 20px; }
+.bottom-right { bottom: 20px; right: 20px; }
+
+
+/* Hero Section */
+#hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(circle, rgba(100, 216, 255, 0.05) 0%, #000 70%);
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Stili per il Logo PNG Principale */
+.hero-logo {
+    max-width: 90%;
+    width: 600px; /* Larghezza di base */
+    height: auto;
+    margin-bottom: 20px; /* Spazio tra logo e box "FIRENZE" */
+    position: relative;
+    
+    /* FX: Animazione e Glow */
+    animation: logo-pulse 4s infinite ease-in-out;
+}
+
+/* Animazione per il bagliore e il glitch del logo */
+@keyframes logo-pulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px var(--neon-cyan)) drop-shadow(0 0 20px rgba(240, 56, 255, 0.3)) opacity(0.95);
+    }
+    50% {
+        filter: drop-shadow(0 0 20px var(--neon-cyan)) drop-shadow(0 0 40px rgba(240, 56, 255, 0.5)) opacity(1);
+    }
+    /* Aggiungiamo un micro-glitch */
+    74% { transform: none; }
+    75% { transform: translate(-2px, 1px) skewX(-3deg); }
+    76% { transform: none; }
+}
+
+.location-box {
+    border: 2px solid var(--ui-color);
+    padding: 5px 20px;
+    display: inline-block;
+    margin-top: 20px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--ui-color);
+}
+
+.tagline {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+
+/* About Section */
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+.about-text h2 {
+    font-size: 2.5rem;
+    text-align: left;
+}
+.about-text p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+.about-text h3 {
+    margin-top: 30px;
+    font-size: 1.5rem;
+}
+.about-image img {
+    width: 100%;
+    border: 2px solid var(--border-color);
+    opacity: 0.8;
+    transition: border-color 0.3s;
+}
+.about-image img:hover {
+    border-color: var(--ui-color);
+}
+
+
+/* Music Section */
+.section-title {
+    margin-bottom: 20px;
+}
+.title-box {
+    display: inline-block;
+    background-color: var(--ui-color);
+    color: var(--background-color);
+    padding: 10px 40px;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+}
+.energy-title, .viral-title {
+    margin-top: 80px;
+}
+.music-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #111;
+    border: 1px solid var(--border-color);
+}
+.card-image {
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+    filter: grayscale(80%);
+    transition: filter 0.4s ease;
+}
+.music-card:hover .card-image {
+    filter: grayscale(0%);
+}
+.anime-card .card-image { background-image: url('images/bg-anime.png'); }
+.jcore-card .card-image { background-image: url('images/bg-jcore.png'); }
+.jpop-card .card-image { background-image: url('images/bg-jpop.png'); }
+.card-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.card-content h4 {
+    color: #aaa;
+    font-size: 1rem;
+}
+.card-content h3 {
+    font-size: 2.5rem;
+    color: var(--ui-color);
+    line-height: 1.2;
+    margin: 10px 0;
+}
+.card-content p {
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+
+/* Gallery Section */
+#gallery {
+    background-color: #050505;
+}
+.carousel {
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
+    border: 2px solid var(--border-color);
+}
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-slide {
+    min-width: 100%;
+}
+.carousel-slide img {
+    width: 100%;
+    display: block;
+    filter: grayscale(50%);
+    transition: filter 0.3s ease;
+}
+.carousel-slide img:hover {
+    filter: grayscale(0%);
+}
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--ui-color);
+    border: 1px solid var(--ui-color);
+    padding: 5px 15px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s, color 0.3s;
+}
+.carousel-btn:hover {
+    background-color: var(--ui-color);
+    color: var(--background-color);
+}
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+
+/* Contact Section */
+#contact {
+    background: url('images/bg-contact.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+}
+.contact-box {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 50px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+.contact-box h3 {
+    font-size: 2rem;
+    line-height: 1.4;
+    color: var(--ui-color);
+}
+.contact-box h3 span {
+    color: var(--ui-color);
+    text-shadow: none;
+}
+.arrows {
+    margin: 20px 0;
+    font-size: 2rem;
+    color: var(--ui-color);
+}
+.arrows span {
+    display: inline-block;
+    margin: 0 10px;
+    transform: rotate(45deg);
+}
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+.contact-list li {
+    margin: 15px 0;
+}
+.contact-list a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+.contact-list a:hover {
+    color: var(--neon-pink);
+}
+.contact-list i {
+    color: var(--ui-color);
+    margin-right: 10px;
+    transition: color 0.3s;
+}
+.contact-list a:hover i {
+    color: var(--neon-pink);
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #000;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+
+/* Responsive Media Queries */
+@media (max-width: 992px) {
+    .about-grid, .music-card {
+        grid-template-columns: 1fr;
+    }
+    .music-card .card-image {
+        min-height: 300px;
+    }
+    .card-content {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 60px 0;
+    }
+    .fixed-logo {
+        display: none;
+    }
+    .title-box {
+        font-size: 1.5rem;
+    }
+    .card-content h3 {
+        font-size: 2rem;
+    }
+    .hero-logo {
+        width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-text h2 {
+        font-size: 2rem;
+    }
+    .contact-box {
+        padding: 30px 20px;
+    }
+    .hero-logo {
+        width: 300px;
+    }
+}
